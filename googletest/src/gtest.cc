@@ -222,31 +222,31 @@ GTEST_DEFINE_bool_(
     fail_fast,
     testing::internal::BoolFromGTestEnv("fail_fast",
                                         testing::GetDefaultFailFast()),
-    "True if and only if a test failure should stop further test execution.");
+    "True if and only if a test failure should stop further test execution.")
 
 GTEST_DEFINE_bool_(
     also_run_disabled_tests,
     testing::internal::BoolFromGTestEnv("also_run_disabled_tests", false),
-    "Run disabled tests too, in addition to the tests normally being run.");
+    "Run disabled tests too, in addition to the tests normally being run.")
 
 GTEST_DEFINE_bool_(
     break_on_failure,
     testing::internal::BoolFromGTestEnv("break_on_failure", false),
     "True if and only if a failed assertion should be a debugger "
-    "break-point.");
+    "break-point.")
 
 GTEST_DEFINE_bool_(catch_exceptions,
                    testing::internal::BoolFromGTestEnv("catch_exceptions",
                                                        true),
                    "True if and only if " GTEST_NAME_
-                   " should catch exceptions and treat them as test failures.");
+                   " should catch exceptions and treat them as test failures.")
 
 GTEST_DEFINE_string_(
     color, testing::internal::StringFromGTestEnv("color", "auto"),
     "Whether to use colors in the output.  Valid values: yes, no, "
     "and auto.  'auto' means to use colors if the output is "
     "being sent to a terminal and the TERM environment variable "
-    "is set to a terminal type that supports colors.");
+    "is set to a terminal type that supports colors.")
 
 GTEST_DEFINE_string_(
     filter,
@@ -256,7 +256,7 @@ GTEST_DEFINE_string_(
     "for filtering the tests to run, optionally followed by a "
     "'-' and a : separated list of negative patterns (tests to "
     "exclude).  A test is run if it matches one of the positive "
-    "patterns and does not match any of the negative patterns.");
+    "patterns and does not match any of the negative patterns.")
 
 GTEST_DEFINE_bool_(
     install_failure_signal_handler,
@@ -265,10 +265,10 @@ GTEST_DEFINE_bool_(
     "If true and supported on the current platform, " GTEST_NAME_
     " should "
     "install a signal handler that dumps debugging information when fatal "
-    "signals are raised.");
+    "signals are raised.")
 
 GTEST_DEFINE_bool_(list_tests, false,
-                   "List all tests without running them.");
+                   "List all tests without running them.")
 
 // The net priority order after flag processing is thus:
 //   --gtest_output command line flag
@@ -286,31 +286,31 @@ GTEST_DEFINE_string_(
     "If a directory is specified, output files will be created "
     "within that directory, with file-names based on the test "
     "executable's name and, if necessary, made unique by adding "
-    "digits.");
+    "digits.")
 
 GTEST_DEFINE_bool_(
     brief, testing::internal::BoolFromGTestEnv("brief", false),
-    "True if only test failures should be displayed in text output.");
+    "True if only test failures should be displayed in text output.")
 
 GTEST_DEFINE_bool_(print_time,
                    testing::internal::BoolFromGTestEnv("print_time", true),
                    "True if and only if " GTEST_NAME_
-                   " should display elapsed time in text output.");
+                   " should display elapsed time in text output.")
 
 GTEST_DEFINE_bool_(print_utf8,
                    testing::internal::BoolFromGTestEnv("print_utf8", true),
                    "True if and only if " GTEST_NAME_
-                   " prints UTF8 characters as text.");
+                   " prints UTF8 characters as text.")
 
 GTEST_DEFINE_int32_(
     random_seed, testing::internal::Int32FromGTestEnv("random_seed", 0),
     "Random number seed to use when shuffling test orders.  Must be in range "
-    "[1, 99999], or 0 to use a seed based on the current time.");
+    "[1, 99999], or 0 to use a seed based on the current time.")
 
 GTEST_DEFINE_int32_(
     repeat, testing::internal::Int32FromGTestEnv("repeat", 1),
     "How many times to repeat each test.  Specify a negative number "
-    "for repeating forever.  Useful for shaking out flaky tests.");
+    "for repeating forever.  Useful for shaking out flaky tests.")
 
 GTEST_DEFINE_bool_(
     recreate_environments_when_repeating,
@@ -322,43 +322,43 @@ GTEST_DEFINE_bool_(
     "Useful for shaking out flaky tests with stable, expensive test "
     "environments. If --gtest_repeat is set to a negative number, meaning "
     "there is no last run, the environments will always be recreated to avoid "
-    "leaks.");
+    "leaks.")
 
 GTEST_DEFINE_bool_(show_internal_stack_frames, false,
                    "True if and only if " GTEST_NAME_
                    " should include internal stack frames when "
-                   "printing test failure stack traces.");
+                   "printing test failure stack traces.")
 
 GTEST_DEFINE_bool_(shuffle,
                    testing::internal::BoolFromGTestEnv("shuffle", false),
                    "True if and only if " GTEST_NAME_
-                   " should randomize tests' order on every run.");
+                   " should randomize tests' order on every run.")
 
 GTEST_DEFINE_int32_(
     stack_trace_depth,
     testing::internal::Int32FromGTestEnv("stack_trace_depth",
                                          testing::kMaxStackTraceDepth),
     "The maximum number of stack frames to print when an "
-    "assertion fails.  The valid range is 0 through 100, inclusive.");
+    "assertion fails.  The valid range is 0 through 100, inclusive.")
 
 GTEST_DEFINE_string_(
     stream_result_to,
     testing::internal::StringFromGTestEnv("stream_result_to", ""),
     "This flag specifies the host name and the port number on which to stream "
     "test results. Example: \"localhost:555\". The flag is effective only on "
-    "Linux.");
+    "Linux.")
 
 GTEST_DEFINE_bool_(
     throw_on_failure,
     testing::internal::BoolFromGTestEnv("throw_on_failure", false),
     "When this flag is specified, a failed assertion will throw an exception "
     "if exceptions are enabled or exit the program with a non-zero code "
-    "otherwise. For use with an external test framework.");
+    "otherwise. For use with an external test framework.")
 
 #if GTEST_USE_OWN_FLAGFILE_FLAG_
 GTEST_DEFINE_string_(
     flagfile, testing::internal::StringFromGTestEnv("flagfile", ""),
-    "This flag specifies the flagfile to read command-line flags from.");
+    "This flag specifies the flagfile to read command-line flags from.")
 #endif  // GTEST_USE_OWN_FLAGFILE_FLAG_
 
 namespace testing {
@@ -3036,11 +3036,15 @@ void TestSuite::Run() {
   start_timestamp_ = internal::GetTimeInMillis();
   internal::Timer timer;
   for (int i = 0; i < total_test_count(); i++) {
-    GetMutableTestInfo(i)->Run();
+    auto* mutable_test_info{GetMutableTestInfo(i)};
+    if(!mutable_test_info)
+      continue;
+
+    mutable_test_info->Run();
     if (GTEST_FLAG_GET(fail_fast) &&
-        GetMutableTestInfo(i)->result()->Failed()) {
+        mutable_test_info->result()->Failed()) {
       for (int j = i + 1; j < total_test_count(); j++) {
-        GetMutableTestInfo(j)->Skip();
+        mutable_test_info->Skip();
       }
       break;
     }
@@ -3563,18 +3567,18 @@ void PrettyUnitTestResultPrinter::PrintFailedTests(const UnitTest& unit_test) {
   printf("%s, listed below:\n", FormatTestCount(failed_test_count).c_str());
 
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
-    const TestSuite& test_suite = *unit_test.GetTestSuite(i);
-    if (!test_suite.should_run() || (test_suite.failed_test_count() == 0)) {
+    const TestSuite* test_suite = unit_test.GetTestSuite(i);
+    if (!test_suite || !test_suite->should_run() || (test_suite->failed_test_count() == 0)) {
       continue;
     }
-    for (int j = 0; j < test_suite.total_test_count(); ++j) {
-      const TestInfo& test_info = *test_suite.GetTestInfo(j);
-      if (!test_info.should_run() || !test_info.result()->Failed()) {
+    for (int j = 0; j < test_suite->total_test_count(); ++j) {
+      const TestInfo* test_info = test_suite->GetTestInfo(j);
+      if (!test_info || !test_info->should_run() || !test_info->result()->Failed()) {
         continue;
       }
       ColoredPrintf(GTestColor::kRed, "[  FAILED  ] ");
-      printf("%s.%s", test_suite.name(), test_info.name());
-      PrintFullTestCommentIfPresent(test_info);
+      printf("%s.%s", test_suite->name(), test_info->name());
+      PrintFullTestCommentIfPresent(*test_info);
       printf("\n");
     }
   }
@@ -3588,13 +3592,13 @@ void PrettyUnitTestResultPrinter::PrintFailedTestSuites(
     const UnitTest& unit_test) {
   int suite_failure_count = 0;
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
-    const TestSuite& test_suite = *unit_test.GetTestSuite(i);
-    if (!test_suite.should_run()) {
+    const TestSuite* test_suite = unit_test.GetTestSuite(i);
+    if (!test_suite || !test_suite->should_run()) {
       continue;
     }
-    if (test_suite.ad_hoc_test_result().Failed()) {
+    if (test_suite->ad_hoc_test_result().Failed()) {
       ColoredPrintf(GTestColor::kRed, "[  FAILED  ] ");
-      printf("%s: SetUpTestSuite or TearDownTestSuite\n", test_suite.name());
+      printf("%s: SetUpTestSuite or TearDownTestSuite\n", test_suite->name());
       ++suite_failure_count;
     }
   }
@@ -3612,17 +3616,17 @@ void PrettyUnitTestResultPrinter::PrintSkippedTests(const UnitTest& unit_test) {
   }
 
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
-    const TestSuite& test_suite = *unit_test.GetTestSuite(i);
-    if (!test_suite.should_run() || (test_suite.skipped_test_count() == 0)) {
+    const TestSuite* test_suite = unit_test.GetTestSuite(i);
+    if (!test_suite || !test_suite->should_run() || (test_suite->skipped_test_count() == 0)) {
       continue;
     }
-    for (int j = 0; j < test_suite.total_test_count(); ++j) {
-      const TestInfo& test_info = *test_suite.GetTestInfo(j);
-      if (!test_info.should_run() || !test_info.result()->Skipped()) {
+    for (int j = 0; j < test_suite->total_test_count(); ++j) {
+      const TestInfo* test_info = test_suite->GetTestInfo(j);
+      if (!test_info || !test_info->should_run() || !test_info->result()->Skipped()) {
         continue;
       }
       ColoredPrintf(GTestColor::kGreen, "[  SKIPPED ] ");
-      printf("%s.%s", test_suite.name(), test_info.name());
+      printf("%s.%s", test_suite->name(), test_info->name());
       printf("\n");
     }
   }
@@ -4342,8 +4346,9 @@ void XmlUnitTestResultPrinter::PrintXmlTestSuite(std::ostream* stream,
   }
   *stream << ">\n";
   for (int i = 0; i < test_suite.total_test_count(); ++i) {
-    if (test_suite.GetTestInfo(i)->is_reportable())
-      OutputXmlTestInfo(stream, test_suite.name(), *test_suite.GetTestInfo(i));
+    auto const* tsi{test_suite.GetTestInfo(i)};
+    if (tsi && tsi->is_reportable())
+      OutputXmlTestInfo(stream, test_suite.name(), *tsi);
   }
   *stream << "  </" << kTestsuite << ">\n";
 }
@@ -4380,8 +4385,9 @@ void XmlUnitTestResultPrinter::PrintXmlUnitTest(std::ostream* stream,
   *stream << ">\n";
 
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
-    if (unit_test.GetTestSuite(i)->reportable_test_count() > 0)
-      PrintXmlTestSuite(stream, *unit_test.GetTestSuite(i));
+    auto const* ts{unit_test.GetTestSuite(i)};
+    if (ts && ts->reportable_test_count() > 0)
+      PrintXmlTestSuite(stream, *ts);
   }
 
   // If there was a test failure outside of one of the test suites (like in a
@@ -4786,13 +4792,14 @@ void JsonUnitTestResultPrinter::PrintJsonTestSuite(
 
   bool comma = false;
   for (int i = 0; i < test_suite.total_test_count(); ++i) {
-    if (test_suite.GetTestInfo(i)->is_reportable()) {
+    auto const* tsi{test_suite.GetTestInfo(i)};
+    if (tsi && tsi->is_reportable()) {
       if (comma) {
         *stream << ",\n";
       } else {
         comma = true;
       }
-      OutputJsonTestInfo(stream, test_suite.name(), *test_suite.GetTestInfo(i));
+      OutputJsonTestInfo(stream, test_suite.name(), *tsi);
     }
   }
   *stream << "\n" << kIndent << "]\n" << Indent(4) << "}";
@@ -4831,13 +4838,14 @@ void JsonUnitTestResultPrinter::PrintJsonUnitTest(std::ostream* stream,
 
   bool comma = false;
   for (int i = 0; i < unit_test.total_test_suite_count(); ++i) {
-    if (unit_test.GetTestSuite(i)->reportable_test_count() > 0) {
+    auto const* ts{unit_test.GetTestSuite(i)};
+    if (ts && ts->reportable_test_count() > 0) {
       if (comma) {
         *stream << ",\n";
       } else {
         comma = true;
       }
-      PrintJsonTestSuite(stream, *unit_test.GetTestSuite(i));
+      PrintJsonTestSuite(stream, *ts);
     }
   }
 
@@ -5895,11 +5903,17 @@ bool UnitTestImpl::RunAllTests() {
       } else if (!Test::HasFatalFailure()) {
         for (int test_index = 0; test_index < total_test_suite_count();
              test_index++) {
-          GetMutableSuiteCase(test_index)->Run();
+          auto* mutable_suite_case{GetMutableSuiteCase(test_index)};
+          if(!mutable_suite_case)
+            continue;
+
+          mutable_suite_case->Run();
           if (GTEST_FLAG_GET(fail_fast) &&
-              GetMutableSuiteCase(test_index)->Failed()) {
+              mutable_suite_case->Failed()) {
             for (int j = test_index + 1; j < total_test_suite_count(); j++) {
-              GetMutableSuiteCase(j)->Skip();
+              auto* next_mutable_suite_case{GetMutableSuiteCase(j)};
+              if(next_mutable_suite_case)
+                next_mutable_suite_case->Skip();
             }
             break;
           }
@@ -5910,7 +5924,9 @@ bool UnitTestImpl::RunAllTests() {
         // skipped to make this obvious in the output.
         for (int test_index = 0; test_index < total_test_suite_count();
              test_index++) {
-          GetMutableSuiteCase(test_index)->Skip();
+          auto* mutable_suite_case{GetMutableSuiteCase(test_index)};
+          if(mutable_suite_case)
+            mutable_suite_case->Skip();
         }
       }
 
